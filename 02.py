@@ -1,46 +1,72 @@
-"""ini pembelajaran ke 1 """
-# import time
-# start_time = time.time()
-#
-# print("hallo ")
-# print("world")
-#
-# a = 10
-# """ini adalah commend multiline"""
-# # ini adalah commend
-# print(a)
-# for i in range(12):
-#     a = 10
-#
-# print(time.time() - start_time, "detik")
+import random
+import time
+import os
+import sys
 
-"""ini pembelajaran ke 2 : Variabel adalah tempet menyimpan data """
-# a = 4
-# x = 2
-# pendek = 1sd
-# panjang = 2
-#
-# print("Nialai a : ", a)
-# print("NIlai x : ", x)
-# print("Nilai pendek : ", pendek)
-# print("Nilai penjang : ", panjang)
+# Cek sistem operasi untuk input keyboard
+if os.name == 'nt':  # Windows
+    import msvcrt
+else:  # Unix/Linux/MacOS
+    from getch import getch  # Perlu alternatif, tapi kita buat sederhana dulu
 
-# def ukuran():
-#     tinggi = 122
-#     pendek = 111
-#     tinggi or pendek
-#     tinggi and pendek
-#
-#     print("tinggi ",tinggi )
-#     print("pendek ",pendek )
-#
-# ukuran()
+# Ukuran papan
+width = 20
+height = 10
 
-berat_badan = float(input("masukan berat badan anda (gm) :"))
-tinggi_badan = float(input("masukan tinggi badan anda (cm):"))
+# Posisi awal ular
+snake = [[height//2, width//2]]
+direction = [0, 1]  # Mulai ke kanan
 
-berat_badan = 170
-berat_badan = 50
+# Posisi makanan
+food = [random.randint(0, height-1), random.randint(0, width-1)]
 
-print(f"berat badan anda {berat_badan}")
-print(f"tinggi badan anda {tinggi_badan}")
+# Skor
+score = 0
+
+# Fungsi untuk menampilkan papan
+def print_board():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    for y in range(height):
+        for x in range(width):
+            if [y, x] in snake:
+                print('O', end=' ')
+            elif [y, x] == food:
+                print('*', end=' ')
+            else:
+                print('.', end=' ')
+        print()
+    print(f"Skor: {score}")
+
+# Fungsi untuk mendapatkan input (khusus Windows dengan msvcrt)
+def get_key():
+    if os.name == 'nt' and msvcrt.kbhit():
+        key = msvcrt.getch().decode('utf-8').lower()
+        return key
+    return None
+
+# Main game loop
+def game_loop():
+    global direction
+    while True:
+        print_board()
+        time.sleep(0.2)  # Kecepatan game
+
+        # Cek input keyboard
+        key = get_key()
+        if key == 'w' and direction != [1, 0]:  # Atas
+            direction = [-1, 0]
+        elif key == 's' and direction != [-1, 0]:  # Bawah
+            direction = [1, 0]
+        elif key == 'a' and direction != [0, 1]:  # Kiri
+            direction = [0, -1]
+        elif key == 'd' and direction != [0, -1]:  # Kanan
+            direction = [0, 1]
+        elif key == 'q':  # Keluar
+            break
+
+        # Hitung posisi baru kepala
+        new_head = [snake[0][0] + direction[0], snake[0][1] + direction[1]]
+
+        # Cek tabrakan
+        if (new_head[0] < 0 or new_head[0] >= height or 
+            new_head[1] <
