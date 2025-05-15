@@ -1,5 +1,6 @@
-#proses input user
-print('=' * 26)
-print('    kalkulator sederhana')
-print
-
+#menghitung persegi
+sisi = float(input("masukan sisi persegi"))
+luas = sisi * sisi
+keliling = 4 * sisi
+print("luas persegi dalam", keliling)
+print("keliling persegi", keliling)
