@@ -19,9 +19,30 @@
 #     print(" sepuluh lebih kecil dari 20 ")
 
 
-nilai = 12
+# nilai = 12
+#
+# if (nilai > 10):
+#     print("nilai yang kamu masukan lebih besar dari 10")
+# if (nilai < 10 ):
+#     print("nilai yang kamu masukan lebih kecil dari 10 ")
+#
 
-if (nilai > 10):
-    print("nilai yang kamu masukan lebih besar dari 10")
-if (nilai < 10 ):
-    print("nilai yang kamu masukan lebih kecil dari 10 ")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
